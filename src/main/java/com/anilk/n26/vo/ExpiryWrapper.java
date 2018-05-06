@@ -2,6 +2,14 @@ package com.anilk.n26.vo;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+/**
+ * Wrapper object containing a value object & the timestamp at which the value
+ * expires.
+ * 
+ * @author anilk
+ *
+ * @param <T>
+ */
 public class ExpiryWrapper<T> {
 
 	private T value;
@@ -24,7 +32,7 @@ public class ExpiryWrapper<T> {
 		this.expiryTimestamp = expiryTimestamp;
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);

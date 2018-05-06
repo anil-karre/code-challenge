@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+/**
+ * Value Object containing the statistics measures.
+ * 
+ * @author anilk
+ *
+ */
 public class StatisticsVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

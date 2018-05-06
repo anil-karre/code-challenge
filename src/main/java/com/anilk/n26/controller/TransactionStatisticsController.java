@@ -18,12 +18,21 @@ public class TransactionStatisticsController {
 	@Autowired
 	private ITransactionStatisticsService transactionStatisticsService;
 
+	/**
+	 * To add a Transaction
+	 * @param transactionVO
+	 * @return
+	 */
 	@RequestMapping(value = "/transactions", method = RequestMethod.POST)
 	public ResponseEntity<Object> addTransaction(@RequestBody TransactionVO transactionVO) {
 		return transactionStatisticsService.addTransaction(transactionVO) ? new ResponseEntity<>(HttpStatus.CREATED)
 				: new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 * To get statistics
+	 * @return
+	 */
 	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
 	public ResponseEntity<StatisticsVO> getStatistics() {
 		return new ResponseEntity<StatisticsVO>(transactionStatisticsService.getStatistics(), HttpStatus.OK);

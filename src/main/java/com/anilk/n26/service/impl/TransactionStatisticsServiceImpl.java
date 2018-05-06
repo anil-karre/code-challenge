@@ -24,6 +24,11 @@ public class TransactionStatisticsServiceImpl implements ITransactionStatisticsS
 	@Value("${app.transaction.life-time.in-milli-sec}")
 	private long transactionLifetime;
 
+	/**
+	 * Add a transaction if it has happened in the last transactionLifetime
+	 * number of milliseconds and return true. Else, do not add and return
+	 * false.
+	 */
 	@Override
 	public boolean addTransaction(TransactionVO transactionVO) {
 		long timeDiff = transactionVO != null ? System.currentTimeMillis() - transactionVO.getTimestamp() : -1;
@@ -41,6 +46,10 @@ public class TransactionStatisticsServiceImpl implements ITransactionStatisticsS
 		return atomicStatistics.get();
 	}
 
+	/*
+	 * Scheduled method to cleanup expired transactions and the re-compute the
+	 * statistics
+	 */
 	@Scheduled(fixedRate = 250)
 	private void cleanupExpiredTransactionsAndComputeStatistics() {
 		List<ExpiryWrapper<TransactionVO>> transactions = new ArrayList<>();
