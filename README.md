@@ -1,5 +1,4 @@
 # code-challenge
-Project Structure:
  
 This project is configured with maven and using JDK 1.8.
 
